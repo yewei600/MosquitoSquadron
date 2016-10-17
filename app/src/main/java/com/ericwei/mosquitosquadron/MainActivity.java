@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -39,23 +41,23 @@ public class MainActivity extends AppCompatActivity
 
         tvData = (TextView) findViewById(R.id.tv1);
 
-        Button getData = (Button) findViewById(R.id.getData);
-        getData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //String restURL = "http://frozen-savannah-70920.herokuapp.com/contacts";
-                new RestOperation().execute("http://frozen-savannah-70920.herokuapp.com/contacts");
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        Button getData = (Button) findViewById(R.id.getData);
+//        getData.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //String restURL = "http://frozen-savannah-70920.herokuapp.com/contacts";
+//                new RestOperation().execute("http://frozen-savannah-70920.herokuapp.com/contacts");
+//            }
+//        });
+//
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -65,6 +67,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        android.app.FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
+
     }
 
     public class RestOperation extends AsyncTask<String, String, String> {
@@ -210,11 +216,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        android.app.FragmentManager fm = getFragmentManager();
 
+
+        int id = item.getItemId();
+        Fragment fragment = null;
+        Class fragmentClass = null;
         if (id == R.id.nav_about) {
-            Intent i = new Intent(MainActivity.this, AboutSquadron.class);
-            startActivity(i);
+            fm.beginTransaction().replace(R.id.content_frame, new AboutSquadronFragment()).commit();
         } else if (id == R.id.nav_calendar) {
             Intent i = new Intent(MainActivity.this, MapActivity.class);
             startActivity(i);
@@ -224,9 +233,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_contact) {
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
