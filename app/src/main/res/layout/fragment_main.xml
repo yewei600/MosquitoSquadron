@@ -4,30 +4,41 @@
     android:layout_height="match_parent"
     tools:context="com.ericwei.mosquitosquadron.MainFragment">
 
-    <LinearLayout
-        android:id="@+id/ll"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
         <Button
             android:id="@+id/getData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="180 banner!"/>
-
-        <EditText
-            android:id="@+id/userInput"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="180 banner!" />
 
         <TextView
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/getData"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="62dp"
+            android:text="textview 1" />
 
+        <EditText
+            android:id="@+id/userInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="banner will appear here"
+            android:layout_below="@+id/getData"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
 
 </FrameLayout>

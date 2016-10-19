@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tvData = (TextView) findViewById(R.id.tv1);
+        // tvData = (TextView) findViewById(R.id.tv1);
 
 //        Button getData = (Button) findViewById(R.id.getData);
 //        getData.setOnClickListener(new View.OnClickListener() {
@@ -239,9 +239,5 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void UploadTest() {
-        int i = 1 + 1;
-        int j = 2 - 3;
-        int k = 44;
-    }
+
 }
