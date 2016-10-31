@@ -2,14 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_banner"
+            android:icon="@drawable/ic_announcement_black_24dp"
+            android:title="Weekly banner"/>
+
         <item
             android:id="@+id/nav_about"
             android:icon="@android:drawable/ic_dialog_info"
             android:title="About 180" />
-        <item
-            android:id="@+id/nav_calendar"
-            android:icon="@android:drawable/ic_menu_day"
-            android:title="Calendar" />
         <item
             android:id="@+id/nav_map"
             android:icon="@android:drawable/ic_dialog_map"
