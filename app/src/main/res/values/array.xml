@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="mapItems">
+        <item>Glenview Senior Public School</item>
+        <item>Denison Armoury</item>
+        <item>HMCS York</item>
+        <item>Royal Canadian Legion Branch 66</item>
+        <item>Douglas Snow Aquatic Centre</item>
+    </array>
+</resources>
