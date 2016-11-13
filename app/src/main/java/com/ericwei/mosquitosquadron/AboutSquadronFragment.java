@@ -8,7 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.ericwei.mosquitosquadron.models.SquadronActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //In this fragment, descriptions are provided for the activities and training offered by the squadron
 
@@ -17,12 +22,34 @@ public class AboutSquadronFragment extends Fragment {
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
     private SquadronDescriptionAdapter adapter;
+    private List<SquadronActivity> activity_list;
+
+    private String activityList[] = {"friday_night_training", "aviation", "sports",
+            "band", "drill", "trips"};
+
+    private int activityImages[] = {R.drawable.friday_night, R.drawable.aviation, R.drawable.sports,
+            R.drawable.band, R.drawable.drill, R.drawable.trips};
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         gridLayoutManager = new GridLayoutManager(getActivity(), 1);
+        activity_list = new ArrayList<>();
+
+        initializeList();
+        getActivity().setTitle("Squadron Activities");
+    }
+
+    public void initializeList() {
+        activity_list.clear();
+
+        for (int i = 0; i < activityList.length; i++) {
+            SquadronActivity activity = new SquadronActivity();
+            activity.setActivityName(activityList[i]);
+            activity.setImageResourceId(activityImages[i]);
+            activity_list.add(activity);
+        }
     }
 
     @Nullable
@@ -33,9 +60,10 @@ public class AboutSquadronFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_aboutSquadron);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        adapter = new SquadronDescriptionAdapter(getActivity());
-        recyclerView.setAdapter(adapter);
-
+        if (activity_list.size() > 0 && recyclerView != null) {
+            adapter = new SquadronDescriptionAdapter(activity_list);
+            recyclerView.setAdapter(adapter);
+        }
 
         return view;
     }

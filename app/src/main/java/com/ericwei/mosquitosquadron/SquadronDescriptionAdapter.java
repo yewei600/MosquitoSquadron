@@ -1,44 +1,49 @@
 package com.ericwei.mosquitosquadron;
 
+
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.Arrays;
+import com.ericwei.mosquitosquadron.models.SquadronActivity;
+
 import java.util.List;
 
 /**
- * Created by eric on 06/11/16.
+ * NOT FUCKING WORKING ................
+ *
+ * FUCK
  */
 
 public class SquadronDescriptionAdapter extends RecyclerView.Adapter<SquadronDescriptionAdapter.ViewHolder> {
 
     private Context context;
-    private List<String> activityItems;
+    private final List<SquadronActivity> activityItems;
+    private final OnItemClickListener listener;
 
-    public SquadronDescriptionAdapter(Context context) {
-        this.context = context;
-        activityItems = Arrays.asList(context.getResources().getStringArray(R.array.squadron_activities_array));
+    public SquadronDescriptionAdapter(List<SquadronActivity> activityItems,
+                                      OnItemClickListener listener) {
+        this.activityItems = activityItems;
+        this.listener = listener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.aboutsquadron_parent, parent, false);
-        return new ViewHolder(itemView);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.aboutsquadron_card, parent, false);
+        return new ViewHolder(itemView, listener);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        int mExpandedPosition = -1;
-        final boolean isExpanded = position == mExpandedPosition;
-       // holder.deta
-
-
-        holder.activity_description.setText(activityItems.get(position));
+        holder.activity_description.setText(activityItems.get(position).getActivityName());
+        holder.activity_image.setImageResource(activityItems.get(position).getImageResourceId());
+        holder.setOnItemClickListener(listener);
     }
 
     @Override
@@ -46,14 +51,42 @@ public class SquadronDescriptionAdapter extends RecyclerView.Adapter<SquadronDes
         return activityItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+
+    public interface OnItemClickListener {
+        void onItemClick(String tvText);
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public CardView cardView;
         public TextView activity_description;
         public ImageView activity_image;
+        private OnItemClickListener listener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
-            activity_description = (TextView) itemView.findViewById(R.id.activity_description);
-            activity_image = (ImageView) itemView.findViewById(R.id.card_image);
+            activity_description = (TextView) itemView.findViewById(R.id.activity_title);
+            activity_image = (ImageView) itemView.findViewById(R.id.activity_image);
+            cardView = (CardView) itemView.findViewById(R.id.activity_cardView);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onItemClick(activity_description.getText().toString());
+                    }
+                }
+            });
+        }
+
+
+        public void setOnItemClickListener(OnItemClickListener listener) {
+            this.listener = listener;
+        }
+
+        public void showDialog(View view) {
+            SquadronActivityDialog dialog = new SquadronActivityDialog();
+            //dialog.show(getFragmentManager(), "yeeeeeeeeeeeeeeeehaaaaa");
         }
     }
+
 }
