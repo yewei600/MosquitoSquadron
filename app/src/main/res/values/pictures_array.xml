@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="activity_pictures">
+        <item>@drawable/friday_night</item>
+        <item>@drawable/aviation</item>
+        <item>@drawable/sports</item>
+        <item>@drawable/music</item>
+        <item>@drawable/drill</item>
+        <item>@drawable/trips</item>
+    </integer-array>
+</resources>

@@ -1,6 +1,7 @@
 package com.ericwei.mosquitosquadron;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,8 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +33,7 @@ public class MainFragment extends Fragment {
     private TextView tvData;
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
-    private CustomAdapter adapter;
+    private BannerAdapter adapter;
     private List<BannerModel> banner_list;
 
     @Override
@@ -57,12 +50,12 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_banner);
         recyclerView.setLayoutManager(gridLayoutManager);
         banner_list = new ArrayList<>();
-        new RestOperation().execute("http://frozen-savannah-70920.herokuapp.com/contacts");
+       // new RestOperation().execute("http://frozen-savannah-70920.herokuapp.com/contacts");
 
-        adapter = new CustomAdapter(getActivity(), banner_list);
+        adapter = new BannerAdapter(getActivity(), banner_list);
         recyclerView.setAdapter(adapter);
 
         //to implement scrolling behaviour
@@ -80,16 +73,21 @@ public class MainFragment extends Fragment {
     }
 
     public class RestOperation extends AsyncTask<String, Void, Void> {
-
+        private ProgressDialog dialog;
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
-            //Toast.makeText(getActivity(), "Downloading shit", Toast.LENGTH_LONG).show();
+            // super.onPreExecute();
+            dialog = new ProgressDialog(getContext());
+            dialog.setMessage("Loading Banner...");
+            dialog.setCancelable(false);
+            dialog.setInverseBackgroundForced(false);
+            dialog.show();
         }
 
         @Override
         protected Void doInBackground(String... params) {
+
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
                     .url(params[0]).build();
@@ -120,14 +118,14 @@ public class MainFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-//            Toast.makeText(getActivity(), banner_list.get(0).getFirstname(), Toast.LENGTH_SHORT).show();
-//            Toast.makeText(getActivity(), banner_list.get(0).getLastname(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), banner_list.get(0).getFirstname(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), banner_list.get(0).getLastname(), Toast.LENGTH_SHORT).show();
 //            Toast.makeText(getActivity(), banner_list.get(0).getId(), Toast.LENGTH_SHORT).show();
 //            Toast.makeText(getActivity(), banner_list.get(0).getCreateDate(), Toast.LENGTH_SHORT).show();
 //            Toast.makeText(getActivity(), banner_list.get(0).getEmail(), Toast.LENGTH_SHORT).show();
 
             adapter.notifyDataSetChanged();
-
+            dialog.hide();
         }
     }
 }

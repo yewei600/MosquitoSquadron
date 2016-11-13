@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.ericwei.mosquitosquadron.AboutSquadronFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_aboutSquadron"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="ABOUT 180"
-        android:textSize="30dp"/>
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="50dp"
+        android:scrollbars="vertical"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="5dp"
+        card_view:cardUseCompatPadding="true" />
 
 
 </FrameLayout>

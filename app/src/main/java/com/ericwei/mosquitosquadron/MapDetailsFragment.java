@@ -124,7 +124,12 @@ public class MapDetailsFragment extends Fragment implements OnMapReadyCallback {
         List<Address> addressList = null;
 
         try {
-            addressList = mGeocoder.getFromLocationName(mLocationName, 1);
+            if (mLocationName.equals("Royal Canadian Legion Branch 66")) {
+                addressList = mGeocoder.getFromLocationName("6 Spring Garden Ave", 1);
+            } else {
+                addressList = mGeocoder.getFromLocationName(mLocationName, 1);
+            }
+
             if (addressList.size() > 0) {
                 double latitude = addressList.get(0).getLatitude();
                 double longitude = addressList.get(0).getLongitude();

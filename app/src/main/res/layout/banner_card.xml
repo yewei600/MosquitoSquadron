@@ -14,39 +14,30 @@
         card_view:cardElevation="4dp"
         card_view:cardUseCompatPadding="true">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/card_image"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/card_image"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:text="test"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="12sp"
+                android:background="#be2123"
+                android:backgroundTintMode="multiply"
+                android:gravity="center"
+                android:textSize="18sp"
                 android:textStyle="normal"
                 android:typeface="sans" />
 
             <TextView
-                android:id="@+id/otherstuff"
+                android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
