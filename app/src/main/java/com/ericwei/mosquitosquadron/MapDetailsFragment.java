@@ -1,7 +1,6 @@
 package com.ericwei.mosquitosquadron;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -12,10 +11,8 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 

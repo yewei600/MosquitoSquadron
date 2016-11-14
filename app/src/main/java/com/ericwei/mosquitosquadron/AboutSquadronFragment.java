@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.ericwei.mosquitosquadron.models.SquadronActivity;
 
@@ -61,7 +60,7 @@ public class AboutSquadronFragment extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         if (activity_list.size() > 0 && recyclerView != null) {
-            adapter = new SquadronDescriptionAdapter(activity_list);
+            adapter = new SquadronDescriptionAdapter(activity_list, getActivity());
             recyclerView.setAdapter(adapter);
         }
 
