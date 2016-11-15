@@ -99,7 +99,8 @@ public class MainActivity extends AppCompatActivity
             fm.beginTransaction().replace(R.id.content_frame, new MapsFragment()).commit();
         } else if (id == R.id.nav_contact) {
             fm.beginTransaction().replace(R.id.content_frame, new ContactsFragment()).commit();
-
+        } else if (id == R.id.nav_feedback) {
+            fm.beginTransaction().replace(R.id.content_frame, new FeedbackFragment()).commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

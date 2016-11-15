@@ -6,7 +6,7 @@
         <item
             android:id="@+id/nav_banner"
             android:icon="@drawable/ic_announcement_black_24dp"
-            android:title="Weekly banner"/>
+            android:title="Weekly banner" />
 
         <item
             android:id="@+id/nav_about"
@@ -19,19 +19,15 @@
         <item
             android:id="@+id/nav_contact"
             android:icon="@android:drawable/sym_contact_card"
-            android:title="Contact" />
+            android:title="Contacts" />
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Feedback" />
         </menu>
     </item>
 

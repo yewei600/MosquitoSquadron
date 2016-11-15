@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ericwei.mosquitosquadron.models.BannerModel;
 
@@ -40,6 +39,7 @@ public class MainFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getActivity().setTitle("180 Weekly Banner");
         //the second argument is how many cards to display in one row
         gridLayoutManager = new GridLayoutManager(getActivity(), 1);
 
@@ -53,7 +53,7 @@ public class MainFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_banner);
         recyclerView.setLayoutManager(gridLayoutManager);
         banner_list = new ArrayList<>();
-       // new RestOperation().execute("http://frozen-savannah-70920.herokuapp.com/contacts");
+        new RestOperation().execute("http://frozen-savannah-70920.herokuapp.com/contacts");
 
         adapter = new BannerAdapter(getActivity(), banner_list);
         recyclerView.setAdapter(adapter);
@@ -101,12 +101,10 @@ public class MainFragment extends Fragment {
 
                     BannerModel bannerItem = new BannerModel(object.getString("_id"),
                             object.getString("firstName"), object.getString("lastName"),
-                            object.getString("email"), object.getString("createDate"));
+                            object.getString("createDate"));
 
                     banner_list.add(bannerItem);
                 }
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
@@ -118,8 +116,8 @@ public class MainFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            Toast.makeText(getActivity(), banner_list.get(0).getFirstname(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(getActivity(), banner_list.get(0).getLastname(), Toast.LENGTH_SHORT).show();
+            //     Toast.makeText(getActivity(), banner_list.get(0).getFirstname(), Toast.LENGTH_SHORT).show();
+            //   Toast.makeText(getActivity(), banner_list.get(0).getLastname(), Toast.LENGTH_SHORT).show();
 //            Toast.makeText(getActivity(), banner_list.get(0).getId(), Toast.LENGTH_SHORT).show();
 //            Toast.makeText(getActivity(), banner_list.get(0).getCreateDate(), Toast.LENGTH_SHORT).show();
 //            Toast.makeText(getActivity(), banner_list.get(0).getEmail(), Toast.LENGTH_SHORT).show();

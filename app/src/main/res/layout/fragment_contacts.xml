@@ -1,13 +1,66 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.ericwei.mosquitosquadron.ContactsFragment">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:paddingTop="50dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="THEM Contacts"
-        android:textSize="30dp" />
-</FrameLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/phone_card"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:elevation="3dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="416 890 1964\nclick to call"
+            android:textSize="30dp" />
+
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/address_card"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:elevation="3dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Mailing Address\n180 Mosquito Sqn\nPO Box 94042\n3409 Yonge St\nToronto ON M4N 2M8" />
+
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/email_card"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:elevation="3dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Double Penetrate Melania Trump's Pussy" />
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
