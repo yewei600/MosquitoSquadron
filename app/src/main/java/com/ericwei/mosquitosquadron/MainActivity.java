@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.getMenu().getItem(0).setChecked(true);
 
         android.app.FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
+        fm.beginTransaction().replace(R.id.content_frame, new BannerExpandableListViewFragment()).commit();
 
     }
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         Class fragmentClass = null;
         if (id == R.id.nav_banner) {
-            fm.beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
+            fm.beginTransaction().replace(R.id.content_frame, new BannerExpandableListViewFragment()).commit();
         } else if (id == R.id.nav_about) {
             fm.beginTransaction().replace(R.id.content_frame, new AboutSquadronFragment()).commit();
         } else if (id == R.id.nav_map) {
@@ -107,6 +107,5 @@ public class MainActivity extends AppCompatActivity
 
         return true;
     }
-
 
 }

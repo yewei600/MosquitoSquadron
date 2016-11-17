@@ -8,14 +8,11 @@ public class BannerModel {
     private String id;
     private String firstname;
     private String lastname;
-    private String createDate;
 
-
-    public BannerModel(String id, String firstname, String lastname, String createDate) {
+    public BannerModel(String id, String firstname, String lastname) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.createDate = createDate;
     }
 
     public String getId() {
@@ -42,11 +39,4 @@ public class BannerModel {
         this.lastname = lastname;
     }
 
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
 }

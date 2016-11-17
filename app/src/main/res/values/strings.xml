@@ -1,13 +1,20 @@
 <resources>
     <string name="app_name">MosquitoSquadron</string>
 
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_about_squadron">AboutSquadron</string>
     <string name="title_activity_map">MapActivity</string>
 
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mailing_address"><b>Mailing Address</b>\n180 Mosquito Sqn\nPO Box 94042\n3409 Yonge St\nToronto ON M4N 2M8</string>
+    <string name="squadron_phone">416 890 1964</string>
+    <string name="email_contact"><i>Contact by email\ncoming soon</i></string>
+    <string name="backend_url">http://frozen-savannah-70920.herokuapp.com/contacts</string>
 </resources>

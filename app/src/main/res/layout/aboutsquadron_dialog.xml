@@ -8,6 +8,9 @@
         android:id="@+id/activity_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hey please show some texts  thank you very much"/>
+        android:lineSpacingMultiplier="1.5"
+        android:maxLines="15"
+        android:scrollbars="vertical"
+        android:textSize="16dp" />
 
 </LinearLayout>

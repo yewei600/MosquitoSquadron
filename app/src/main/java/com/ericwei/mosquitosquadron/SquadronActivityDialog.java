@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class SquadronActivityDialog extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.aboutsquadron_dialog, null);
         activityDetail = (TextView) view.findViewById(R.id.activity_detail);
+        activityDetail.setMovementMethod(new ScrollingMovementMethod());
         activityDetail.setText(message);
 
         builder.setView(view);

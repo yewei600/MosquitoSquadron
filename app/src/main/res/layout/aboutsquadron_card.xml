@@ -42,6 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:padding="16dp"
+                    android:textSize="15dp"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 

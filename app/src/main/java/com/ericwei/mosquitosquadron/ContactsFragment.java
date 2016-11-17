@@ -31,19 +31,18 @@ public class ContactsFragment extends Fragment {
         phone_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+1 416 705 3116"));
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+1 416 890 1964"));
                 startActivity(intent);
             }
         });
 
-        address_card=(CardView)view.findViewById(R.id.address_card);
-        address_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
+//        address_card=(CardView)view.findViewById(R.id.address_card);
+//        address_card.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
         return view;
     }
