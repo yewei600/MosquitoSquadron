@@ -3,6 +3,7 @@ package com.ericwei.mosquitosquadron;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,7 +44,10 @@ public class SquadronDescriptionAdapter extends RecyclerView.Adapter<SquadronDes
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SquadronActivityDialog dialog = new SquadronActivityDialog(activityDetailDescriptions[position]);
+                Bundle args = new Bundle();
+                args.putString("message", activityDetailDescriptions[position]);
+                SquadronActivityDialog dialog = new SquadronActivityDialog();
+                dialog.setArguments(args);
                 dialog.show(((Activity) context).getFragmentManager(), "tag");
             }
         });

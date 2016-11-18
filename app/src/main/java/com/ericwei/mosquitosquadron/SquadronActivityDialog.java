@@ -17,8 +17,8 @@ public class SquadronActivityDialog extends DialogFragment {
     private String message;
     private TextView activityDetail;
 
-    public SquadronActivityDialog(String message) {
-        this.message = message;
+    public SquadronActivityDialog() {
+
     }
 
     @Override
@@ -27,6 +27,8 @@ public class SquadronActivityDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.aboutsquadron_dialog, null);
+
+        message = getArguments().getString("message");
         activityDetail = (TextView) view.findViewById(R.id.activity_detail);
         activityDetail.setMovementMethod(new ScrollingMovementMethod());
         activityDetail.setText(message);
