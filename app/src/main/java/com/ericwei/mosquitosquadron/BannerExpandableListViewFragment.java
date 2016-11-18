@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,6 @@ import okhttp3.Response;
 public class BannerExpandableListViewFragment extends Fragment {
 
     private BannerExpandableListAdapter listAdapter;
-    private SwipeRefreshLayout swipeContainer;
     private ExpandableListView expandableListView;
     private List<String> expandableListTitle;
     private HashMap<String, String> expandableListDetail;
@@ -62,20 +60,6 @@ public class BannerExpandableListViewFragment extends Fragment {
         expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
         expandableListView.setAdapter(listAdapter);
 
-        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new RestOperation().execute(getString(R.string.backend_url));
-                listAdapter = new BannerExpandableListAdapter(getActivity(), expandableListTitle, expandableListDetail);
-                expandableListView.setAdapter(listAdapter);
-            }
-        });
-
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
         return view;
     }
 
@@ -84,12 +68,7 @@ public class BannerExpandableListViewFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
-
-            if(expandableListTitle.size()!=0){
-                expandableListTitle.clear();
-                expandableListDetail.clear();
-            }
-
+            // super.onPreExecute();
             dialog = new ProgressDialog(getContext());
             dialog.setMessage("Loading Banner...");
             dialog.setCancelable(false);
@@ -133,7 +112,6 @@ public class BannerExpandableListViewFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             getActivity().setTitle(bannerDate);
-            swipeContainer.setRefreshing(false);
 
             listAdapter.notifyDataSetChanged();
             dialog.hide();

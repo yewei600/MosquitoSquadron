@@ -3,7 +3,6 @@ package com.ericwei.mosquitosquadron;
 import android.app.Fragment;
 import android.location.Address;
 import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MapDetailsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MapDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class MapDetailsFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private MapView mapView;
@@ -39,9 +31,6 @@ public class MapDetailsFragment extends Fragment implements OnMapReadyCallback {
 
     // TODO: Rename and change types of parameters
     private String mLocationName;
-    private String mParam2;
-
-    // private OnFragmentInteractionListener mListener;
 
     public MapDetailsFragment() {
         // Required empty public constructor
@@ -66,10 +55,6 @@ public class MapDetailsFragment extends Fragment implements OnMapReadyCallback {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        MapFragment mapFragment = (MapFragment) getFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
-
         mGeocoder = new Geocoder(getActivity());
 
         if (getArguments() != null) {
@@ -91,30 +76,6 @@ public class MapDetailsFragment extends Fragment implements OnMapReadyCallback {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -122,7 +83,7 @@ public class MapDetailsFragment extends Fragment implements OnMapReadyCallback {
 
         try {
             if (mLocationName.equals("Royal Canadian Legion Branch 66")) {
-                addressList = mGeocoder.getFromLocationName("6 Spring Garden Ave", 1);
+                addressList = mGeocoder.getFromLocationName("6 Spring Garden Ave M2N 3G2", 1);
             } else {
                 addressList = mGeocoder.getFromLocationName(mLocationName, 1);
             }
@@ -143,21 +104,5 @@ public class MapDetailsFragment extends Fragment implements OnMapReadyCallback {
             e.printStackTrace();
         }
     }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
 
 }

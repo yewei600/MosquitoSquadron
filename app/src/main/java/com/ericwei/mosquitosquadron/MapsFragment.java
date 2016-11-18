@@ -43,16 +43,11 @@ public class MapsFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
         String locName = l.getItemAtPosition(position).toString();
         MapDetailsFragment detailsFragment = MapDetailsFragment.newInstance(locName);
-//        Bundle bundle = new Bundle();
-//
-//        bundle.putString("LOC_NAME", locName);
-//        detailsFragment.setArguments(bundle);
 
         this.getFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, detailsFragment, null)
                 .addToBackStack(null).commit();
 
-        // Toast.makeText(getActivity(), l.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
     }
 
 }

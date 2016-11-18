@@ -17,4 +17,6 @@
     <string name="squadron_phone">416 890 1964</string>
     <string name="email_contact"><i>Contact by email\ncoming soon</i></string>
     <string name="backend_url">http://frozen-savannah-70920.herokuapp.com/contacts</string>
+    <string name="feedback_key">entry.1069231479</string>
+    <string name="google_form_url">https://docs.google.com/forms/d/e/1FAIpQLSdHVtO-W75SPeb5R5TWpSo5R6vU2UTlho0pdgV0EBbk3yMAoQ/formResponse</string>
 </resources>
