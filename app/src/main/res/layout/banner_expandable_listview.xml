@@ -11,8 +11,13 @@
         android:layout_height="match_parent"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"
-        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft">
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"></ExpandableListView>
 
-    </ExpandableListView>
-
+    <TextView
+        android:id="@+id/expandableListView_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/empty_textview_margin"
+        android:text="@string/empty_banner_list" />
 </FrameLayout>

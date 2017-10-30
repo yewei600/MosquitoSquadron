@@ -11,9 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity
         android.app.FragmentManager fm = getFragmentManager();
         fm.beginTransaction().replace(R.id.content_frame, new BannerExpandableListViewFragment()).commit();
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 
 
@@ -78,8 +82,8 @@ public class MainActivity extends AppCompatActivity
         android.app.FragmentManager fm = getFragmentManager();
 
         int id = item.getItemId();
-        Fragment fragment = null;
-        Class fragmentClass = null;
+//        Fragment fragment = null;
+//        Class fragmentClass = null;
         if (id == R.id.nav_banner) {
             fm.beginTransaction().replace(R.id.content_frame, new BannerExpandableListViewFragment()).commit();
         } else if (id == R.id.nav_about) {

@@ -6,9 +6,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.ericwei.mosquitosquadron.models.BannerModel;
 
@@ -41,16 +43,15 @@ public class BannerExpandableListViewFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle("Nov 18th Banner");
+        //getActivity().setTitle("Nov 18th Banner");
 
-        new RestOperation().execute(getString(R.string.backend_url));
+       // new RestOperation().execute(getString(R.string.backend_url));
+        new RestOperation().execute("http://frozen-savannah-70920.herokuapp.com/contacts/");
 
         expandableListDetail = new HashMap<String, String>();
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
 
         listAdapter = new BannerExpandableListAdapter(getActivity(), expandableListTitle, expandableListDetail);
-
-
     }
 
     @Nullable
@@ -58,9 +59,16 @@ public class BannerExpandableListViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.banner_expandable_listview, container, false);
         expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
+        View emptyView = view.findViewById(R.id.expandableListView_empty);
+        expandableListView.setEmptyView(emptyView);
         expandableListView.setAdapter(listAdapter);
 
         return view;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     public class RestOperation extends AsyncTask<String, Void, Void> {
@@ -100,8 +108,10 @@ public class BannerExpandableListViewFragment extends Fragment {
                         expandableListDetail.put(bannerItem.getFirstname(), bannerItem.getLastname());
                     }
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
+                updateEmptyView();
             } catch (JSONException e) {
                 System.out.println("End of content");
             }
@@ -115,6 +125,20 @@ public class BannerExpandableListViewFragment extends Fragment {
 
             listAdapter.notifyDataSetChanged();
             dialog.hide();
+        }
+    }
+
+    private void updateEmptyView() {
+        if (listAdapter.getGroupCount() == 0) {
+            TextView tv = (TextView) getView().findViewById(R.id.expandableListView_empty);
+            if (null != tv) {
+                // if cursor is empty, why? do we have an invalid location
+                int message = R.string.empty_banner_list;
+                if (!Utility.isNetworkAvailable(getActivity())) {
+                    message = R.string.empty_banner_list_no_network;
+                }
+                tv.setText(message);
+            }
         }
     }
 

@@ -1,14 +1,22 @@
 package com.ericwei.mosquitosquadron;
 
 import android.content.Context;
+import android.support.annotation.IntDef;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.ericwei.mosquitosquadron.BannerExpandableListAdapter.LOCATION_STATUS_OK;
+import static com.ericwei.mosquitosquadron.BannerExpandableListAdapter.LOCATION_STATUS_SERVER_DOWN;
+import static com.ericwei.mosquitosquadron.BannerExpandableListAdapter.LOCATION_STATUS_SERVER_INVALID;
+import static com.ericwei.mosquitosquadron.BannerExpandableListAdapter.LOCATION_STATUS_UNKNOWN;
 
 /**
  * Created by yucwei on 11/15/16.
@@ -19,6 +27,18 @@ public class BannerExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> expandableListTitle;
     private HashMap<String, String> expandableListDetail;
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({LOCATION_STATUS_OK, LOCATION_STATUS_SERVER_DOWN, LOCATION_STATUS_SERVER_INVALID, LOCATION_STATUS_UNKNOWN})
+    public @interface LocationStatus {
+    }
+
+    public static final int LOCATION_STATUS_OK = 0;
+    public static final int LOCATION_STATUS_SERVER_DOWN = 1;
+    public static final int
+            LOCATION_STATUS_SERVER_INVALID = 2;
+    public static final int
+            LOCATION_STATUS_UNKNOWN = 3;
 
 
     public BannerExpandableListAdapter(Context context, List<String> expandableListTitle, HashMap<String, String> expandableListDetail) {
